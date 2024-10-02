@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="setor-title">Setor</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Pesquise ITs...">
+        <button onclick="pesquisarIT()">Pesquisar</button>
+    </div>
+
+    <div id="it-list" class="it-container">
+        <div class="it-bloco" onclick="openIT('IT1')">IT 1</div>
+        <div class="it-bloco" onclick="openIT('IT2')">IT 2</div>
+        <div class="it-bloco" onclick="openIT('IT3')">IT 3</div>
+        <!-- Mais blocos de IT -->
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const setor = urlParams.get('setor');
+            document.getElementById('setor-title').innerText = setor;
+        };
+
+        function pesquisarIT() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const itList = document.getElementById('it-list').children;
+            
+            for (let it of itList) {
+                const itText = it.innerText.toLowerCase();
+                it.style.display = itText.includes(query) ? '' : 'none';
+            }
+        }
+
+        function openIT(it) {
+            window.location.href = `it.html?it=${it}`;
+        }
+    </script>
+</body>
+</html>
