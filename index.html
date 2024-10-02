@@ -4,9 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Setores</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS diretamente no arquivo HTML */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .setores-container, .it-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .setor-bloco, .it-bloco {
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            width: 150px;
+        }
+
+        .setor-bloco:hover, .it-bloco:hover {
+            background-color: #bbb;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .it-content {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <!-- Página inicial com os blocos dos setores -->
     <header>
         <h1>Selecione um Setor</h1>
     </header>
@@ -20,11 +89,58 @@
         <div class="setor-bloco" onclick="openSetor('Apontamento')">Apontamento</div>
     </div>
 
+    <div id="setor-page" style="display:none;">
+        <header>
+            <h1 id="setor-title"></h1>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquise ITs...">
+            <button onclick="pesquisarIT()">Pesquisar</button>
+        </div>
+
+        <div id="it-list" class="it-container">
+            <div class="it-bloco" onclick="openIT('IT1')">IT 1</div>
+            <div class="it-bloco" onclick="openIT('IT2')">IT 2</div>
+            <div class="it-bloco" onclick="openIT('IT3')">IT 3</div>
+        </div>
+    </div>
+
+    <div id="it-page" style="display:none;">
+        <header>
+            <h1 id="it-title"></h1>
+        </header>
+        <div class="it-content">
+            <p id="it-content"></p>
+        </div>
+    </div>
+
     <script>
+        // JavaScript também incluído diretamente no arquivo HTML
         function openSetor(setor) {
-            window.location.href = `setor.html?setor=${setor}`;
+            // Esconde a página inicial e mostra a página do setor
+            document.querySelector('.setores-container').style.display = 'none';
+            document.getElementById('setor-page').style.display = 'block';
+            document.getElementById('setor-title').innerText = setor;
+        }
+
+        function pesquisarIT() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const itList = document.getElementById('it-list').children;
+            
+            for (let it of itList) {
+                const itText = it.innerText.toLowerCase();
+                it.style.display = itText.includes(query) ? '' : 'none';
+            }
+        }
+
+        function openIT(it) {
+            // Esconde a página do setor e mostra a página de IT
+            document.getElementById('setor-page').style.display = 'none';
+            document.getElementById('it-page').style.display = 'block';
+            document.getElementById('it-title').innerText = it;
+            document.getElementById('it-content').innerHTML = `<p>Conteúdo do ${it} carregado aqui.</p>`;
         }
     </script>
 </body>
 </html>
-
