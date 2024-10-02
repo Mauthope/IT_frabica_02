@@ -100,9 +100,7 @@
         </div>
 
         <div id="it-list" class="it-container">
-            <div class="it-bloco" onclick="openIT('IT1')">IT 1</div>
-            <div class="it-bloco" onclick="openIT('IT2')">IT 2</div>
-            <div class="it-bloco" onclick="openIT('IT3')">IT 3</div>
+            <!-- ITs dinâmicas serão inseridas aqui -->
         </div>
 
         <div class="back-button">
@@ -111,11 +109,36 @@
     </div>
 
     <script>
-        // Função para abrir a página do setor
+        let currentSetor = '';
+
+        // Função para abrir a página do setor e carregar as ITs correspondentes
         function openSetor(setor) {
+            currentSetor = setor; // Guarda o setor atual
             document.querySelector('.setores-container').style.display = 'none';
             document.getElementById('setor-page').style.display = 'block';
             document.getElementById('setor-title').innerText = setor;
+
+            // Defina as ITs específicas para cada setor
+            const itData = {
+                'Laminacao': ['IT 1', 'IT 2', 'IT 3'],
+                'Impressao': ['IT 4', 'IT 5', 'IT 6'],
+                'Acabamento': ['IT 7', 'IT 8', 'IT 9'],
+                'Soldada': ['IT 10', 'IT 11', 'IT 12'],
+                'Expedicao': ['IT 13', 'IT 14', 'IT 15'],
+                'Apontamento': ['IT 16', 'IT 17', 'IT 18']
+            };
+
+            const itList = document.getElementById('it-list');
+            itList.innerHTML = ''; // Limpa as ITs anteriores
+
+            // Adiciona as ITs do setor selecionado
+            itData[setor].forEach(it => {
+                const itBloco = document.createElement('div');
+                itBloco.classList.add('it-bloco');
+                itBloco.innerText = it;
+                itBloco.onclick = () => openIT(it);
+                itList.appendChild(itBloco);
+            });
         }
 
         // Função para pesquisar ITs
@@ -129,24 +152,51 @@
             }
         }
 
-        // Função para abrir o PDF em uma nova aba
+        // Função para abrir o PDF correspondente ao setor e IT em uma nova aba
         function openIT(it) {
-            // Mapeia cada IT a um arquivo PDF
+            // Mapeia o setor e a IT para um arquivo PDF
             const pdfFiles = {
-                'IT1': 'pdfs/IT1.pdf', // Substitua com o caminho correto para os PDFs
-                'IT2': 'pdfs/IT2.pdf',
-                'IT3': 'pdfs/IT3.pdf'
+                'Laminacao': {
+                    'IT 1': 'pdfs/laminacao/IT1.pdf',
+                    'IT 2': 'pdfs/laminacao/IT2.pdf',
+                    'IT 3': 'pdfs/laminacao/IT3.pdf'
+                },
+                'Impressao': {
+                    'IT 4': 'pdfs/impressao/IT4.pdf',
+                    'IT 5': 'pdfs/impressao/IT5.pdf',
+                    'IT 6': 'pdfs/impressao/IT6.pdf'
+                },
+                'Acabamento': {
+                    'IT 7': 'pdfs/acabamento/IT7.pdf',
+                    'IT 8': 'pdfs/acabamento/IT8.pdf',
+                    'IT 9': 'pdfs/acabamento/IT9.pdf'
+                },
+                'Soldada': {
+                    'IT 10': 'pdfs/soldada/IT10.pdf',
+                    'IT 11': 'pdfs/soldada/IT11.pdf',
+                    'IT 12': 'pdfs/soldada/IT12.pdf'
+                },
+                'Expedicao': {
+                    'IT 13': 'pdfs/expedicao/IT13.pdf',
+                    'IT 14': 'pdfs/expedicao/IT14.pdf',
+                    'IT 15': 'pdfs/expedicao/IT15.pdf'
+                },
+                'Apontamento': {
+                    'IT 16': 'pdfs/apontamento/IT16.pdf',
+                    'IT 17': 'pdfs/apontamento/IT17.pdf',
+                    'IT 18': 'pdfs/apontamento/IT18.pdf'
+                }
             };
 
-            // Abre o PDF correspondente em uma nova aba
-            if (pdfFiles[it]) {
-                window.open(pdfFiles[it], '_blank');
+            // Abre o PDF correspondente ao setor e IT em uma nova aba
+            if (pdfFiles[currentSetor] && pdfFiles[currentSetor][it]) {
+                window.open(pdfFiles[currentSetor][it], '_blank');
             } else {
                 alert('Arquivo não encontrado.');
             }
         }
 
-        // Função para voltar a página
+        // Função para voltar à página inicial
         function goBack(page) {
             if (page === 'home') {
                 document.getElementById('setor-page').style.display = 'none';
