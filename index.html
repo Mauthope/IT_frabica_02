@@ -68,11 +68,6 @@
             background-color: #555;
         }
 
-        .it-content {
-            padding: 20px;
-            text-align: center;
-        }
-
         .back-button {
             margin: 20px;
             text-align: center;
@@ -115,19 +110,6 @@
         </div>
     </div>
 
-    <div id="it-page" style="display:none;">
-        <header>
-            <h1 id="it-title"></h1>
-        </header>
-        <div class="it-content">
-            <p id="it-content"></p>
-        </div>
-
-        <div class="back-button">
-            <button onclick="goBack('setor')">Voltar</button>
-        </div>
-    </div>
-
     <script>
         // Função para abrir a página do setor
         function openSetor(setor) {
@@ -147,12 +129,21 @@
             }
         }
 
-        // Função para abrir a página de IT
+        // Função para abrir o PDF em uma nova aba
         function openIT(it) {
-            document.getElementById('setor-page').style.display = 'none';
-            document.getElementById('it-page').style.display = 'block';
-            document.getElementById('it-title').innerText = it;
-            document.getElementById('it-content').innerHTML = `<p>Conteúdo do ${it} carregado aqui.</p>`;
+            // Mapeia cada IT a um arquivo PDF
+            const pdfFiles = {
+                'IT1': 'pdfs/IT1.pdf', // Substitua com o caminho correto para os PDFs
+                'IT2': 'pdfs/IT2.pdf',
+                'IT3': 'pdfs/IT3.pdf'
+            };
+
+            // Abre o PDF correspondente em uma nova aba
+            if (pdfFiles[it]) {
+                window.open(pdfFiles[it], '_blank');
+            } else {
+                alert('Arquivo não encontrado.');
+            }
         }
 
         // Função para voltar a página
@@ -160,9 +151,6 @@
             if (page === 'home') {
                 document.getElementById('setor-page').style.display = 'none';
                 document.querySelector('.setores-container').style.display = 'flex';
-            } else if (page === 'setor') {
-                document.getElementById('it-page').style.display = 'none';
-                document.getElementById('setor-page').style.display = 'block';
             }
         }
     </script>
