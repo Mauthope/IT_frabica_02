@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Setores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Selecione um Setor</h1>
+    </header>
+
+    <div class="setores-container">
+        <div class="setor-bloco" onclick="openSetor('Laminacao')">Laminação</div>
+        <div class="setor-bloco" onclick="openSetor('Impressao')">Impressão</div>
+        <div class="setor-bloco" onclick="openSetor('Acabamento')">Acabamento</div>
+        <div class="setor-bloco" onclick="openSetor('Soldada')">Soldada</div>
+        <div class="setor-bloco" onclick="openSetor('Expedicao')">Expedição</div>
+        <div class="setor-bloco" onclick="openSetor('Apontamento')">Apontamento</div>
+    </div>
+
+    <script>
+        function openSetor(setor) {
+            window.location.href = `setor.html?setor=${setor}`;
+        }
+    </script>
+</body>
+</html>
 
