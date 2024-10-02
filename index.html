@@ -72,6 +72,11 @@
             padding: 20px;
             text-align: center;
         }
+
+        .back-button {
+            margin: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -104,6 +109,10 @@
             <div class="it-bloco" onclick="openIT('IT2')">IT 2</div>
             <div class="it-bloco" onclick="openIT('IT3')">IT 3</div>
         </div>
+
+        <div class="back-button">
+            <button onclick="goBack('home')">Voltar</button>
+        </div>
     </div>
 
     <div id="it-page" style="display:none;">
@@ -113,17 +122,21 @@
         <div class="it-content">
             <p id="it-content"></p>
         </div>
+
+        <div class="back-button">
+            <button onclick="goBack('setor')">Voltar</button>
+        </div>
     </div>
 
     <script>
-        // JavaScript também incluído diretamente no arquivo HTML
+        // Função para abrir a página do setor
         function openSetor(setor) {
-            // Esconde a página inicial e mostra a página do setor
             document.querySelector('.setores-container').style.display = 'none';
             document.getElementById('setor-page').style.display = 'block';
             document.getElementById('setor-title').innerText = setor;
         }
 
+        // Função para pesquisar ITs
         function pesquisarIT() {
             const query = document.getElementById('search-input').value.toLowerCase();
             const itList = document.getElementById('it-list').children;
@@ -134,12 +147,23 @@
             }
         }
 
+        // Função para abrir a página de IT
         function openIT(it) {
-            // Esconde a página do setor e mostra a página de IT
             document.getElementById('setor-page').style.display = 'none';
             document.getElementById('it-page').style.display = 'block';
             document.getElementById('it-title').innerText = it;
             document.getElementById('it-content').innerHTML = `<p>Conteúdo do ${it} carregado aqui.</p>`;
+        }
+
+        // Função para voltar a página
+        function goBack(page) {
+            if (page === 'home') {
+                document.getElementById('setor-page').style.display = 'none';
+                document.querySelector('.setores-container').style.display = 'flex';
+            } else if (page === 'setor') {
+                document.getElementById('it-page').style.display = 'none';
+                document.getElementById('setor-page').style.display = 'block';
+            }
         }
     </script>
 </body>
