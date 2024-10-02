@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Detalhes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="it-title">IT Detalhes</h1>
+    </header>
+
+    <div class="it-content">
+        <!-- Conteúdo do arquivo IT carregado aqui -->
+        <p id="it-content">Conteúdo do arquivo IT será exibido aqui.</p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const it = urlParams.get('it');
+            document.getElementById('it-title').innerText = it;
+            loadIT(it);
+        };
+
+        function loadIT(it) {
+            // Simulação de carregar um arquivo HTML com base no IT selecionado
+            document.getElementById('it-content').innerHTML = `<p>Conteúdo do ${it} carregado aqui.</p>`;
+        }
+    </script>
+</body>
+</html>
