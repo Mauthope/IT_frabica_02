@@ -5,41 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Setores</title>
     <style>
-        /* CSS diretamente no arquivo HTML */
+        /* Estilo geral e moderno */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f6f9;
+            color: #333;
         }
 
         header {
-            background-color: #333;
+            background-color: #4A90E2;
             color: white;
-            padding: 1rem;
+            padding: 1.5rem;
             text-align: center;
+            font-size: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .setores-container, .it-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 20px;
+            margin: 30px 10px;
         }
 
         .setor-bloco, .it-bloco {
-            background-color: #ddd;
-            border: 1px solid #ccc;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
             padding: 20px;
-            margin: 10px;
+            margin: 15px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
             text-align: center;
-            width: 150px;
+            width: 180px;
+            border-radius: 15px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
         }
 
         .setor-bloco:hover, .it-bloco:hover {
-            background-color: #bbb;
+            background-color: #4A90E2;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .search-container {
@@ -49,28 +57,43 @@
         }
 
         input[type="text"] {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
-            border: 1px solid #ccc;
-            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            width: 320px;
             margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         button {
-            padding: 10px 15px;
-            background-color: #333;
+            padding: 12px 18px;
+            background-color: #4A90E2;
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
         }
 
         button:hover {
-            background-color: #555;
+            background-color: #357ABD;
         }
 
         .back-button {
             margin: 20px;
             text-align: center;
+        }
+
+        .back-button button {
+            background-color: #f44336;
+            box-shadow: none;
+        }
+
+        .back-button button:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
